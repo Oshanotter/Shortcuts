@@ -471,7 +471,7 @@ main(){
             MUSIC_URL="https://music.youtube.com/watch?v=$VIDEO_ID"
             echo "YouTube URL: $MUSIC_URL"
         else
-            echo "Invalid YouTube video URL"
+            echo "Invalid Input: Invalid YouTube URL."
             exit 0
         fi
 
@@ -485,7 +485,7 @@ main(){
             
             # reject non-track pages
             if [[ "$INPUT" =~ /(sets|albums|tracks|popular-tracks|reposts) ]]; then
-                echo "Invalid SoundCloud URL."
+                echo "Invalid Input: Invalid SoundCloud URL."
                 exit 0
             fi
 
@@ -494,11 +494,12 @@ main(){
             echo "SoundCloud URL: $MUSIC_URL"
 
         else
-            echo "Invalid SoundCloud URL."
+            echo "Invalid Input: Invalid SoundCloud URL."
+            exit 0
         fi
 
     else
-        echo "Invalid url."
+        echo "Invalid Input: Invalid URL."
         exit 0
     fi
 

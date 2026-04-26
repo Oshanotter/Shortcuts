@@ -4,7 +4,7 @@
 
 Part of the Music Download Suite. It takes a YouTube or SoundCloud URL as input and downloads that music file.
 
-Download Here: [https://www.icloud.com/shortcuts/6366692993ae47c4a5b736a4502b6864](https://www.icloud.com/shortcuts/6366692993ae47c4a5b736a4502b6864)
+Download Here: [https://www.icloud.com/shortcuts/fdd5c7220a7b410b9347513499d2fd2c](https://www.icloud.com/shortcuts/fdd5c7220a7b410b9347513499d2fd2c)
 
 ---
 
