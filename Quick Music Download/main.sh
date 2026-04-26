@@ -466,8 +466,8 @@ main(){
     elif [[ "$INPUT" = *"youtube.com"* || "$INPUT" = *"youtu.be"* ]]; then
 
         # check to see if the url is a valid youtube link
-        if [[ "$INPUT" =~ ^https?://([a-zA-Z0-9-]+\.)?(youtube\.com/watch\?v=|youtu\.be/)([A-Za-z0-9_-]{11})([&?].*)?$ ]]; then
-            VIDEO_ID="${BASH_REMATCH[3]}"
+        if [[ "$INPUT" =~ ^(https?://)?([a-zA-Z0-9-]+\.)?(youtube\.com/watch\?v=|youtu\.be/)([A-Za-z0-9_-]{11})([&?].*)?$ ]]; then
+            VIDEO_ID="${BASH_REMATCH[4]}"
             MUSIC_URL="https://music.youtube.com/watch?v=$VIDEO_ID"
             echo "YouTube URL: $MUSIC_URL"
         else
@@ -478,10 +478,10 @@ main(){
     elif [[ "$INPUT" = *"soundcloud.com"* ]]; then
 
         #check to see if the url is a valid soundcloud link
-        if [[ "$INPUT" =~ ^https?://(www\.)?soundcloud\.com/([^/]+)/([^/?]+) ]]; then
+        if [[ "$INPUT" =~ ^(https?://)?(www\.)?soundcloud\.com/([^/]+)/([^/?]+) ]]; then
 
-            ARTIST="${BASH_REMATCH[2]}"
-            TRACK="${BASH_REMATCH[3]}"
+            ARTIST="${BASH_REMATCH[3]}"
+            TRACK="${BASH_REMATCH[4]}"
             
             # reject non-track pages
             if [[ "$INPUT" =~ /(sets|albums|tracks|popular-tracks|reposts) ]]; then
