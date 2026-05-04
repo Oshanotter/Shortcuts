@@ -484,7 +484,7 @@ main(){
             TRACK="${BASH_REMATCH[4]}"
             
             # reject non-track pages
-            if [[ "$INPUT" =~ /(sets|albums|tracks|popular-tracks|reposts) ]]; then
+            if [[ "$TRACK" =~ /(sets|albums|tracks|popular-tracks|reposts) ]]; then
                 echo "Invalid Input: Invalid SoundCloud URL."
                 exit 0
             fi
