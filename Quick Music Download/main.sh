@@ -283,8 +283,24 @@ parseDefaultMetadata() {
         # if the metadata is from soundcloud...
 
         TITLE=$(echo "$METADATA" | jq -r '.title')
-        ARTIST=$(echo "$METADATA" | jq -r '.uploader')
-        ALBUM_ARTIST="$ARTIST"
+        ARTIST=$(echo "$METADATA" | jq -r '
+            if .artists then .artists
+            else [.uploader]
+            end
+        ')
+        # convert array into a string formatted like this: "a, b & c"
+        ARTIST=$(echo "$ARTIST" | jq -r '
+            if type == "array" then
+                if length == 1 then .[0]
+                elif length == 2 then "\(.[0]) & \(.[1])"
+                else
+                    (.[0:-1] | join(", ")) + " & " + .[-1]
+                end
+            else
+                .
+            end
+        ')
+        ALBUM_ARTIST=$(echo "$METADATA" | jq -r '.uploader')
         GENRE=$(echo "$METADATA" | jq -r '.genre // empty')
 
         ALBUM="$TITLE - Single"
