@@ -424,7 +424,7 @@ handleArtwork() {
 
         # strip prefix
         local BASE64_DATA
-        BASE64_DATA=$(echo "$artwork" | sed -E 's/^data:image\/[a-zA-Z0-9.+-]+;base64,//')
+        BASE64_DATA=$(echo "$ARTWORK" | sed -E 's/^data:image\/[a-zA-Z0-9.+-]+;base64,//')
 
         echo "$BASE64_DATA" | base64 --decode > "$TEMP_ARTWORK_PATH"
 
@@ -461,10 +461,10 @@ main(){
 
     # check if binaries exist
     if [ -f "$YT_DLP_PATH" ] && [ -f "$FFMPEG_PATH" ] && [ -f "$DENO_PATH" ]; then
-    echo "Dependencies Exist"
+        echo "Dependencies Exist"
     else
-    echo "Dependencies Do Not Exist"
-    downloadBinaries
+        echo "Dependencies Do Not Exist"
+        downloadBinaries
     fi
 
 
