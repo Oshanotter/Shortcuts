@@ -10,6 +10,7 @@ FFMPEG_PATH="$DIR/ffmpeg"
 DENO_PATH="$DIR/deno"
 TEMP_PATH="$DIR/temp"
 TEMP_ARTWORK_PATH="$TEMP_PATH/artwork.jpg"
+MODIFIED_ARTWORK_PATH="$TEMP_PATH/artwork_mod.jpg"
 TEMP_AUDIO_PATH="$TEMP_PATH/audio.m4a"
 JSON_DIRECTORY="$HOME/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/Music Download Suite/Songs To Get"
 DOWNLOAD_PATH="$HOME/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/Music Download Suite/Music"
@@ -211,7 +212,7 @@ handleArtwork() {
             "$FFMPEG_PATH" \
                 -i "$TEMP_ARTWORK_PATH" \
                 -vf "crop=min(iw\,ih):min(iw\,ih)" \
-                -y "${TEMP_ARTWORK_PATH}.tmp"
+                -y "$MODIFIED_ARTWORK_PATH"
 
         # if it needs margins added, add them
         elif [[ "$ARTWORK_STYLE" == "Margins Added" ]]; then
@@ -221,12 +222,12 @@ handleArtwork() {
             "$FFMPEG_PATH" \
                 -i "$TEMP_ARTWORK_PATH" \
                 -vf "pad=max(iw\,ih):max(iw\,ih):(ow-iw)/2:(oh-ih)/2" \
-                -y "${TEMP_ARTWORK_PATH}.tmp"
+                -y "$MODIFIED_ARTWORK_PATH"
 
         fi
 
         # place the squared image into the correct directory
-        mv "${TEMP_ARTWORK_PATH}.tmp" "$TEMP_ARTWORK_PATH"
+        mv "$MODIFIED_ARTWORK_PATH" "$TEMP_ARTWORK_PATH"
 
     fi
 }
